@@ -9,8 +9,6 @@ import com.civicpulse.backend.service.IssueService;
 import com.civicpulse.backend.service.UpvoteService;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
-import io.github.bucket4j.Bucket4j;
-import io.github.bucket4j.Refill;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,9 +42,8 @@ public class IssueController {
     // Rate limit: 5 requests per 1 hour
     private Bucket resolveBucket(String email) {
         return userBuckets.computeIfAbsent(email, key -> {
-            Refill refill = Refill.intervally(5, Duration.ofHours(1));
-            Bandwidth limit = Bandwidth.classic(5, refill);
-            return Bucket4j.builder().addLimit(limit).build();
+            Bandwidth limit = Bandwidth.builder().capacity(5).refillGreedy(5, Duration.ofHours(1)).build();
+            return Bucket.builder().addLimit(limit).build();
         });
     }
 
