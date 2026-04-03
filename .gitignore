@@ -1,0 +1,59 @@
+# ===== Java / Maven =====
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# Maven Wrapper
+.mvn/
+mvnw
+mvnw.cmd
+
+# ===== Spring Boot =====
+spring-shell.log
+*.log
+logs/
+
+# ===== IDE =====
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.eclipse/
+.settings/
+.classpath
+.project
+.factorypath
+*.orig
+
+# ===== Node / npm (if any tooling) =====
+node_modules/
+npm-debug.log*
+
+# ===== Docker =====
+.docker/
+
+# ===== Kubernetes secrets - NEVER commit real secret values =====
+# k8s/secret.yaml is committed with placeholder values only
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Environment =====
+.env
+.env.local
+*.env
+
+# ===== Build artifacts =====
+dist/
+build/
+out/
